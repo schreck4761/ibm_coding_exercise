@@ -28,13 +28,13 @@ public class EmployeeController {
     @GetMapping("/employees")
     CollectionModel<EntityModel<Employee>> getAllEmployees() {
 
-    List<EntityModel<Employee>> employees = repository.findAll().stream()
-        .map(assembler::toModel)
-        .collect(Collectors.toList());
+        List<EntityModel<Employee>> employees = repository.findAll().stream()
+            .map(assembler::toModel)
+            .collect(Collectors.toList());
 
-    return CollectionModel.of(employees, 
-        linkTo(methodOn(EmployeeController.class).getAllEmployees()).withSelfRel());
-}
+        return CollectionModel.of(employees, 
+            linkTo(methodOn(EmployeeController.class).getAllEmployees()).withSelfRel());
+    }
 
     @GetMapping("/employees/{id}")
     EntityModel<Employee> getEmployeeById(@PathVariable Long id) {
