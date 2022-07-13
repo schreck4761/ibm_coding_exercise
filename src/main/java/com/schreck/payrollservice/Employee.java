@@ -80,4 +80,13 @@ public class Employee {
     public void setRemainingVacationDays(int days) {
         this.remainingVacationDays = days;
     }
+
+    public void updateFromEmployee(Employee updatedEmployee) {
+        this.firstName = updatedEmployee.firstName;
+        this.lastName = updatedEmployee.lastName;
+        this.role = updatedEmployee.role;
+        this.salary = updatedEmployee.salary;
+        this.salaryCurrency = updatedEmployee.salaryCurrency;
+        this.remainingVacationDays = updatedEmployee.remainingVacationDays;
+    }
 }
