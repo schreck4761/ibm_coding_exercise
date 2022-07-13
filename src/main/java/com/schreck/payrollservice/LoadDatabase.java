@@ -1,5 +1,8 @@
 package com.schreck.payrollservice;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -15,8 +18,19 @@ class LoadDatabase {
   CommandLineRunner initDatabase(EmployeeRepository repository) {
 
     return args -> {
-      log.info("Preloading " + repository.save(new Employee("Joe", "Tester", "Administrator", 100000, "USD", 5)));
-      log.info("Preloading " + repository.save(new Employee()));
+      List<Employee> testEmployees = getTestEmployees();
+      for (Employee employee : testEmployees) {
+        log.info("Preloading " + repository.save(employee));
+      }
     };
+  }
+
+  private List<Employee> getTestEmployees() {
+    List<Employee> testEmployees = new ArrayList<Employee>();
+    testEmployees.add(new Employee("Joe", "Tester", "Administrator", 300000, "USD", 10));
+    testEmployees.add(new Employee("Hello", "World", "Intern", 1337, "USD", 365));
+    testEmployees.add(new Employee("Laura", "Bailey", "Marketer", 130000, "USD", 0));
+    testEmployees.add(new Employee("Alexandra", "Li", "President", 163112, "NZD", 16));
+    return testEmployees;
   }
 }
