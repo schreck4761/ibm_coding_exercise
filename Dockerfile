@@ -1,3 +1,6 @@
+# An example Dockerfile if the bootBuildImage buildpack wasn't used.
+# Expects the project to already be built.
+# See also https://spring.io/guides/topicals/spring-boot-docker/
 FROM openjdk:17-jdk-alpine as builder
 VOLUME /tmp
 COPY build/libs/\*.jar application.jar
