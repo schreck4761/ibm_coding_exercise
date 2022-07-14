@@ -3,6 +3,8 @@ Tim Schreck's Payroll Coding Exercise
 
 A simple Spring Boot Application which exposes a REST Api for managing an employee payroll.
 
+Execute main.sh to build and run as a docker container
+
 ### Helpful Links
 <a href="https://github.com/spring-projects/spring-hateoas-examples">Spring Projects Hateoas Example </br>
 <a href="https://start.spring.io/">Start String</a></br>
