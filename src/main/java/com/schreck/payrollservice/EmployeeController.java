@@ -30,6 +30,11 @@ public class EmployeeController {
         this.assembler = assembler;
     }
 
+    /**
+     * Retrieve every {@link Employee} from the database and format them into a REST collection resource.
+     * 
+     * @return a list of all employees
+     */
     @GetMapping("/employees")
     CollectionModel<EntityModel<Employee>> getAllEmployees() {
         List<Employee> allEmployees = employeeService.getAllEmployees();
@@ -41,12 +46,24 @@ public class EmployeeController {
             linkTo(methodOn(EmployeeController.class).getAllEmployees()).withSelfRel());
     }
 
+    /**
+     * Retrieve a single {@link Employee} with given id and format as a REST resource
+     * 
+     * @param id
+     * @return a single employee
+     */
     @GetMapping("/employees/{id}")
     EntityModel<Employee> getEmployeeById(@PathVariable Long id) {
         Employee employee = employeeService.getEmployeeById(id);
         return assembler.toModel(employee);
     }
 
+    /**
+     * Create a new employee given an {@link Employee} and format as a REST resource
+     * 
+     * @param employee
+     * @return the newly created employee
+     */
     @PostMapping("/employees")
     ResponseEntity<EntityModel<Employee>> createEmployee(@RequestBody Employee employee) {
         Employee createdEmployee = employeeService.createEmployee(employee);
@@ -57,6 +74,13 @@ public class EmployeeController {
             .body(entityModel);
     }
 
+    /**
+     * Update an existing employee given an id and return the updated {@link Employee} as a REST resource
+     * 
+     * @param id
+     * @param newEmployeeDetails
+     * @return the updated employee
+     */
     @PostMapping("/employees/{id}")
     ResponseEntity<EntityModel<Employee>> updateEmployeeById(@PathVariable Long id, @RequestBody Employee newEmployeeDetails) {
         Employee updatedEmployee = employeeService.updateEmployeeById(id, newEmployeeDetails);
